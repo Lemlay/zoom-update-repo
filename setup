@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Initial install
+sudo dnf install -y https://zoom.us/client/latest/zoom_$(uname -m).rpm 
+
+# Setup daily checks
+sudo cp ./zoom /etc/cron.daily/zoom
+printf "0 1 * * * root /bin/bash /etc/cron.daily/zoom\n\n" >> /etc/cron.d/0daily
+sudo chmod 700 /etc/cron.daily/zoom
+sudo chmod 700 /etc/cron.d/0daily
+

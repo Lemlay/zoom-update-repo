@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export LATEST=`curl -s -I HEAD https://zoom.us/client/latest/zoom_x86_64.rpm | egrep '^location:' | awk '{print $2}' | awk 'BEGIN{ FS = "/" }; {print $5}'`
+export LATEST=`curl -s -I HEAD https://zoom.us/client/latest/zoom_$(uname -m).rpm | egrep '^location:' | awk '{print $2}' | awk 'BEGIN{ FS = "/" }; {print $5}'`
 export VERSION=`cat /opt/zoom/version.txt`
 if [[ LATEST != VERSION ]]; then
    sudo dnf remove -y zoom
